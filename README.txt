@@ -30,6 +30,9 @@ mps_alisetup.py alignment_config.ini
 # Check status of jobs at anytime
 mps_stat.py
 
+# Stop the job finished email notifications
+export LSB_JOB_REPORT_MAIL=N
+
 # Submit and start the milli jobs
 mps_fire.py -a
 
@@ -41,6 +44,4 @@ mps_fire.py -m (-f to force even if some milli jobs not in OK)
 
 # Fetch pede job
 mps_fetch.py
-
-
 
