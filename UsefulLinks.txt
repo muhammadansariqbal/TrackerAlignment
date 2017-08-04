@@ -1,7 +1,0 @@
-Useful Links for Tracker Alignment
-==================================
-
-# Tracker Alignment Presentation
-https://indico.cern.ch/event/652229/contributions/2654900/attachments/1489162/2337898/kit-align_2017-07-07.pdf
-
-
