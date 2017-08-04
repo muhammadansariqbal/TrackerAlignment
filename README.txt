@@ -12,6 +12,7 @@ https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideMillepedeProductionSystem
 # CAF Area for MPS Alignment
 /afs/cern.ch/cms/CAF/CMSALCA/ALCA_TRACKERALIGN/MP/MPproduction
 
+
 # Steps to do the MPS Alignment
 ===============================
 
@@ -32,10 +33,13 @@ mps_stat.py
 # Submit and start the milli jobs
 mps_fire.py -a
 
+# Fetch milli jobs
+mps_fetch.py
+
 # Submit and start the pede job
 mps_fire.py -m (-f to force even if some milli jobs not in OK)
 
-# Fetch jobs
+# Fetch pede job
 mps_fetch.py
 
 
