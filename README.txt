@@ -73,7 +73,7 @@ cd ../../alignmentObjects/maiqbal
 voms-proxy-init --voms cms
 
 # Run the jobs e.g.
-validateAlignments.py -c geometric_comparison.ini -N geometricComparison -m
+validateAlignments.py -c geometry_comparison.ini -N geometryComparison -m
 
 # Check status
 bjobs
