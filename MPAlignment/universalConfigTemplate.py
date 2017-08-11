@@ -39,7 +39,7 @@ process = cms.Process("Alignment")
 
 ################################################################################
 # Variables edited by mps_alisetup.py. Used in functions below.
-# You can change them manually as well. -- don't change it though even though you can
+# You can change them manually as well.
 # ------------------------------------------------------------------------------
 setupGlobaltag        = "placeholder_globaltag"
 setupCollection       = "placeholder_collection"
@@ -95,6 +95,12 @@ import Alignment.MillePedeAlignmentAlgorithm.alignmentsetup.SetCondition as tagw
 ##########################
 
 # You can use tagwriter.setCondition() to overwrite conditions in globaltag
+#
+# Example:
+# tagwriter.setCondition(process,
+#       connect = "frontier://FrontierProd/CMS_CONDITIONS",
+#       record = "TrackerAlignmentErrorExtendedRcd",
+#       tag = "TrackerIdealGeometryErrorsExtended210_mc")
 
 
 #######################
@@ -104,27 +110,21 @@ import Alignment.MillePedeAlignmentAlgorithm.alignmentsetup.SetCondition as tagw
 # # to run a high-level alignment on real data (including TOB centering; use
 # # pixel-barrel centering for MC) of the whole tracker you can use the
 # # following configuration:
-
-process.AlignmentProducer.ParameterBuilder.parameterTypes = [
-    "SelectorRigid,RigidBody",
-    "SelectorBowed,BowedSurface",
-    ]
-
-
-# Define the high-level structure alignables
-process.AlignmentProducer.ParameterBuilder.SelectorRigid = cms.PSet(
-     alignParams = cms.vstring(
-        "TrackerP1PXBHalfBarrel,111111",
-        "TrackerP1PXECHalfCylinder,111111",
-    )
-)
-# Define low-level alignables
-process.AlignmentProducer.ParameterBuilder.SelectorBowed = cms.PSet(
-    alignParams = cms.vstring(
-        "TrackerP1PXBModule,111111 111", 
-        "TrackerP1PXECModule,110111 111", # w coordinate is third 1 
-    ),
-)
+#
+# process.AlignmentProducer.ParameterBuilder.parameterTypes = [
+#     "SelectorRigid,RigidBody",
+#     ]
+# # Define the high-level structure alignables
+# process.AlignmentProducer.ParameterBuilder.SelectorRigid = cms.PSet(
+#     alignParams = cms.vstring(
+#         "TrackerP1PXBHalfBarrel,111111",
+#         "TrackerP1PXECHalfCylinder,111111",
+#         "TrackerTIBHalfBarrel,111111",
+#         "TrackerTOBHalfBarrel,rrrrrr",
+#         "TrackerTIDEndcap,111111",
+#         "TrackerTECEndcap,111111",
+#     )
+# )
 
 
 # # to run a module-level alignment on real data (including TOB centering; use
@@ -203,9 +203,8 @@ process.AlignmentProducer.ParameterBuilder.SelectorBowed = cms.PSet(
 # # http://www.desy.de/~kleinwrt/MP2/doc/html/option_page.html#sec-cmd
 # # you can change pede settings as follows:
 #
-import Alignment.MillePedeAlignmentAlgorithm.alignmentsetup.helper as helper
-helper.set_pede_option(process, "entries 50 10 2")
-process.AlignmentProducer.algoConfig.pedeSteerer.method = "inversion 3 0.8"
+# import Alignment.MillePedeAlignmentAlgorithm.alignmentsetup.helper as helper
+# helper.set_pede_option(process, "entries 50 10 2")
 
 
 #################
@@ -231,9 +230,7 @@ if setupAlgoMode == "mille":
                 collection         = setupCollection,
                 json_file          = setupJson,
                 cosmics_zero_tesla = setupCosmicsZeroTesla,
-                cosmics_deco_mode  = setupCosmicsDecoMode,
-		TTRHBuilder        = "WithAngleAndTemplate")
-
+                cosmics_deco_mode  = setupCosmicsDecoMode)
 
 ################################################################################
 # Pede-procedure
