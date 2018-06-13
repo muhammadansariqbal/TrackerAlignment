@@ -98,10 +98,10 @@ import Alignment.MillePedeAlignmentAlgorithm.alignmentsetup.SetCondition as tagw
 # # You can use tagwriter.setCondition() to overwrite conditions in globaltag
 # #
 # # Examples (ideal phase-1 tracker-alignment conditions):
-# tagwriter.setCondition(process,
-#       connect = "frontier://FrontierProd/CMS_CONDITIONS",
-#       record = "TrackerAlignmentRcd",
-#       tag = "TrackerAlignment_Upgrade2017_design_v4")
+tagwriter.setCondition(process,
+      connect = "frontier://FrontierProd/CMS_CONDITIONS",
+      record = "SiPixelTemplateDBObject",
+      tag = "SiPixelTemplateDBObject_phase1_38T_2018_v5")
 # tagwriter.setCondition(process,
 #       connect = "frontier://FrontierProd/CMS_CONDITIONS",
 #       record = "TrackerSurfaceDeformationRcd",
@@ -147,35 +147,27 @@ import Alignment.MillePedeAlignmentAlgorithm.alignmentsetup.SetCondition as tagw
 # # deformations) you can use the following configuration (read comments on
 # # multi-IOV alignment below):
 #
-# process.AlignmentProducer.ParameterBuilder.parameterTypes = [
-#     "SelectorRigid,RigidBody",
-#     "SelectorBowed,BowedSurface",
-#     "SelectorTwoBowed,TwoBowedSurfaces",
-# ]
+process.AlignmentProducer.ParameterBuilder.parameterTypes = [
+    "SelectorRigid,RigidBody",
+    "SelectorBowed,BowedSurface",
+]
 #
 # # Define the high-level structure alignables
-# process.AlignmentProducer.ParameterBuilder.SelectorRigid = cms.PSet(
-#     alignParams = cms.vstring(
-#         "TrackerP1PXBHalfBarrel,111111",
-#         "TrackerP1PXECHalfCylinder,111111",
-#         "TrackerTIBHalfBarrel,111111",
-#         "TrackerTOBHalfBarrel,rrrrrr",
-#         "TrackerTIDEndcap,111111",
-#         "TrackerTECEndcap,111111",
-#     )
-# )
+process.AlignmentProducer.ParameterBuilder.SelectorRigid = cms.PSet(
+    alignParams = cms.vstring(
+        "TrackerP1PXBHalfBarrel,111111",
+        "TrackerP1PXECHalfCylinder,111111",
+    )
+)
 #
 # # Define the module-level alignables (for single modules)
-# process.AlignmentProducer.ParameterBuilder.SelectorBowed = cms.PSet(
-#     alignParams = cms.vstring(
-#         "TrackerP1PXBModule,111111 111",
-#         "TrackerP1PXECModule,111111 111",
-#         "TrackerTIBModuleUnit,101111 111",
-#         "TrackerTIDModuleUnit,111111 111",
-#         "TrackerTECModuleUnit,111111 111,tecSingleSens",
-#     ),
-#     tecSingleSens = cms.PSet(tecDetId = cms.PSet(ringRanges = cms.vint32(1,4))),
-# )
+process.AlignmentProducer.ParameterBuilder.SelectorBowed = cms.PSet(
+    alignParams = cms.vstring(
+        "TrackerP1PXBModule,111111 000",
+        "TrackerP1PXECModule,111111 000",
+    ),
+    tecSingleSens = cms.PSet(tecDetId = cms.PSet(ringRanges = cms.vint32(1,4))),
+)
 #
 # process.AlignmentProducer.ParameterBuilder.SelectorTwoBowed = cms.PSet(
 #     alignParams = cms.vstring(
@@ -192,15 +184,11 @@ import Alignment.MillePedeAlignmentAlgorithm.alignmentsetup.SetCondition as tagw
 # process.AlignmentProducer.RunRangeSelection = [
 #     cms.PSet(
 #         RunRanges = cms.vstring(
-#             "290550",
-#             "300000",
+#             "317661",
 #         ),
 #         selector = cms.vstring(
 #             "TrackerP1PXBHalfBarrel,111111",
 #             "TrackerP1PXECHalfCylinder,111111",
-#             "TrackerTIBHalfBarrel,111111",
-#             "TrackerTIDEndcap,111111",
-#             "TrackerTECEndcap,111111",
 #         )
 #     )
 # ] # end of process.AlignmentProducer.RunRangeSelection
@@ -269,8 +257,9 @@ import Alignment.MillePedeAlignmentAlgorithm.alignmentsetup.SetCondition as tagw
 # #
 # # you can change or drop pede options as follows:
 #
-# import Alignment.MillePedeAlignmentAlgorithm.alignmentsetup.helper as helper
-# helper.set_pede_option(process, "entries 50 10 2")
+import Alignment.MillePedeAlignmentAlgorithm.alignmentsetup.helper as helper
+helper.set_pede_option(process, "entries 50 10 2")
+process.AlignmentProducer.algoConfig.pedeSteerer.method = "inversion 3 0.8"
 # helper.set_pede_option(process, "compress", drop = True)
 
 
