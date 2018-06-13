@@ -14,6 +14,7 @@ https://twiki.cern.ch/twiki/bin/viewauth/CMS/TkAl2018Datasets
 
 # Figuring out global tags (Go to condb links and find relevant records)
 https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideFrontierConditions#Global_Tags_for_2018_data_taking
+# Remember to add the "Rcd" after a record in config files if it is not there on conddb
 
 # Alignment constants and specialized single IOV tags can be found here
 https://twiki.cern.ch/twiki/bin/view/CMSPublic/SWGuideAlignmentConstants

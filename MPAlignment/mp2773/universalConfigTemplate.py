@@ -100,7 +100,7 @@ import Alignment.MillePedeAlignmentAlgorithm.alignmentsetup.SetCondition as tagw
 # # Examples (ideal phase-1 tracker-alignment conditions):
 tagwriter.setCondition(process,
       connect = "frontier://FrontierProd/CMS_CONDITIONS",
-      record = "SiPixelTemplateDBObject",
+      record = "SiPixelTemplateDBObjectRcd",
       tag = "SiPixelTemplateDBObject_phase1_38T_2018_v5")
 # tagwriter.setCondition(process,
 #       connect = "frontier://FrontierProd/CMS_CONDITIONS",
