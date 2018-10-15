@@ -1,0 +1,23 @@
+# Fork CMSSW.
+
+# Set up a production release e.g.
+cmsrel CMSSW_10_3_1
+
+# In src clone the required subdirectories using sparse checkout
+git init
+git remote add -f origin git@github.com:muhammadansariqbal/cmssw.git
+git config core.sparseCheckout true
+echo "Alignment/OfflineValidation/" >> .git/info/sparse-checkout
+git pull origin CMSSW_10_3_X
+
+# Build and check if everything works fine
+scram b -j 20
+
+# Make new branch for making changes
+git checkout -b CMSSW_10_3_X_EOSMigration
+git push origin CMSSW_10_3_X_EOSMigration
+
+# Make changes and push to own forked repo
+git push origin CMSSW_10_3_X_EOSMigration
+
+# Make PR from web interface
