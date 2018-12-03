@@ -64,7 +64,12 @@ mps_fire.py -a
 mps_fetch.py
 
 # Submit and start the pede job
+# If we do not want to include some mille jobs or some failed, we can remove binaries and trees from jobData/jobm/alignment_merge.py. In case of failure, we also need to change FAIL to OK in mps.db
 mps_fire.py -m (-f to force even if some milli jobs not in OK)
 
 # Fetch pede job
 mps_fetch.py
+
+# In case we need more pede jobs, this creates jobm1 etc. based on previous jobm
+mps_setupm.pl
+
