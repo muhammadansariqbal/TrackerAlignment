@@ -10,6 +10,7 @@ cd /eos/cms/store/group/alca_trackeralign/AlignmentValidation/AlignmentValidatio
 inputDir=/eos/cms/store/group/alca_trackeralign/AlignmentValidation/AlignmentValidation/UL17_UpdatedAPEs/DMRs/
 
 # Lumi lists
+lumiList2016="/afs/cern.ch/cms/CAF/CMSALCA/ALCA_TRACKERALIGN/data/commonValidation/alignmentObjects/maiqbal/haddws/lumiperrun2016.txt"
 lumiList2017="/afs/cern.ch/cms/CAF/CMSALCA/ALCA_TRACKERALIGN/data/commonValidation/alignmentObjects/maiqbal/haddws/lumiperrun2017.txt"
 lumiList2018="/afs/cern.ch/cms/CAF/CMSALCA/ALCA_TRACKERALIGN/data/commonValidation/alignmentObjects/maiqbal/haddws/lumiperrun2018.txt"
 
@@ -24,7 +25,7 @@ intLumi="0.0"
 for runDir in $(ls $inputDir | grep offline_minbias)
 do
 	runNum=${runDir#offline_minbias_}
-	lumi=$(grep $runNum $lumiList2017 $lumiList2018 | cut -d " " -f2)
+	lumi=$(grep "$runNum"" " $lumiList2016 $lumiList2017 $lumiList2018 | cut -d " " -f2)
 	intLumi=$(echo "$intLumi""+""$lumi" | bc -l)
 
 	numRuns=$(($numRuns+1))
@@ -47,7 +48,7 @@ do
 	files="$files""$inputDir""$runDir""/AlignmentValidation_minbias_Prompt.root "
 
 	runNum=${runDir#offline_minbias_}
-	lumi=$(grep $runNum $lumiList2017 $lumiList2018 | cut -d " " -f2)
+	lumi=$(grep "$runNum"" " $lumiList2016 $lumiList2017 $lumiList2018 | cut -d " " -f2)
 	weight=$(echo "$lumi""/""$intLumi" | bc -l)
 	weights="$weights""$weight"" "
 

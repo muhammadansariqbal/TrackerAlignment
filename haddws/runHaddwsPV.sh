@@ -11,6 +11,7 @@ inputDir=/eos/cms/store/group/alca_trackeralign/musich/test_out/2018UltraLegacy2
 geometry=PromptGT_
 
 # Lumi lists
+lumiList2016="/afs/cern.ch/cms/CAF/CMSALCA/ALCA_TRACKERALIGN/data/commonValidation/alignmentObjects/maiqbal/haddws/lumiperrun2016.txt"
 lumiList2017="/afs/cern.ch/cms/CAF/CMSALCA/ALCA_TRACKERALIGN/data/commonValidation/alignmentObjects/maiqbal/haddws/lumiperrun2017.txt"
 lumiList2018="/afs/cern.ch/cms/CAF/CMSALCA/ALCA_TRACKERALIGN/data/commonValidation/alignmentObjects/maiqbal/haddws/lumiperrun2018.txt"
 
@@ -26,7 +27,7 @@ for filename in $(ls $inputDir | grep $geometry)
 do
 	runNum=$(echo $filename | cut -d "_" -f3)
 	runNum=$(echo $runNum | cut -d "." -f1)
-	lumi=$(grep $runNum $lumiList2017 $lumiList2018 | cut -d " " -f2)
+	lumi=$(grep "$runNum"" " $lumiList2016 $lumiList2017 $lumiList2018 | cut -d " " -f2)
 	intLumi=$(echo "$intLumi""+""$lumi" | bc -l)
 
 	numRuns=$(($numRuns+1))
@@ -50,7 +51,7 @@ do
 
 	runNum=$(echo $filename | cut -d "_" -f3)
         runNum=$(echo $runNum | cut -d "." -f1)
-	lumi=$(grep $runNum $lumiList2017 $lumiList2018 | cut -d " " -f2)
+	lumi=$(grep "$runNum"" " $lumiList2016 $lumiList2017 $lumiList2018 | cut -d " " -f2)
 	weight=$(echo "$lumi""/""$intLumi" | bc -l)
 	weights="$weights""$weight"" "
 
