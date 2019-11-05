@@ -44,7 +44,7 @@
 #include <TTimeStamp.h>
 #include <TStopwatch.h>
 //#include "Alignment/OfflineValidation/macros/TkAlStyle.cc" 
-#include "Alignment/OfflineValidation/macros/CMS_lumi.C"
+#include "/afs/cern.ch/cms/CAF/CMSALCA/ALCA_TRACKERALIGN/data/commonValidation/alignmentObjects/maiqbal/20191029_ULPublicPlots/PV/CMS_lumi.C"
 #include "Alignment/OfflineValidation/interface/PVValidationHelpers.h"
 
 /* 
@@ -1904,7 +1904,7 @@ void arrangeBiasCanvas(TCanvas *canv,TH1F* dxyPhiMeanTrend[100],TH1F* dzPhiMeanT
     lego->Draw();
  
     TPad *current_pad = static_cast<TPad*>(canv->GetPad(k+1));
-    CMS_lumi(current_pad,4,33 );
+    CMS_lumi(current_pad,4,0);
     if(theDate!="")
       ptDate->Draw("same");
   }
@@ -2064,7 +2064,7 @@ void arrangeCanvas(TCanvas *canv,TH1F* meanplots[100],TH1F* widthplots[100],Int_
     current_pad = static_cast<TPad*>(canv->GetPad(0));
   }
 
-  CMS_lumi(current_pad,4,33 );
+  CMS_lumi(current_pad,4,0);
   if(theDate!="")
     ptDate->Draw("same");
 
@@ -2112,7 +2112,7 @@ void arrangeCanvas(TCanvas *canv,TH1F* meanplots[100],TH1F* widthplots[100],Int_
     lego->Draw();
    
     TPad *current_pad2 = static_cast<TPad*>(canv->GetPad(2));
-    CMS_lumi(current_pad2,4,33 );
+    CMS_lumi(current_pad2,4,0);
     if(theDate!="")
       ptDate->Draw("same");
 
@@ -2157,7 +2157,7 @@ void arrangeCanvas2D(TCanvas *canv,TH2F* meanmaps[100],TH2F* widthmaps[100],Int_
     pt2[i]->SetTextFont(52);
     pt2[i]->SetTextAlign(12);
     // TText *text2 = pt2->AddText("run: "+theDate);
-    TText *text2 = pt2[i]->AddText("INTERNAL");
+    TText *text2 = pt2[i]->AddText("Preliminary");
     text2->SetTextSize(0.06*extraOverCmsTextSize); 
     
     pt3[i] = new TPaveText(0.55,0.955,0.95,0.98,"NDC");
@@ -2358,7 +2358,7 @@ void arrangeFitCanvas(TCanvas *canv,TH1F* meanplots[100],Int_t nFiles, TString L
  
   //TkAlStyle::drawStandardTitle(Coll0T15);
   lego->Draw("same");
-  CMS_lumi( canv,4,33 );
+  CMS_lumi( canv,4,0);
   if(theDate!="")
     ptDate->Draw("same");
   //pt->Draw("same");
@@ -3423,8 +3423,8 @@ void setStyle(){
 /*--------------------------------------------------------------------*/
 
   writeExtraText = true;       // if extra text
-  lumi_13TeV     = "p-p collisions";
-  extraText = "Internal";
+  lumi_13TeV     = "2016+2017+2018 pp collisions";
+  //extraText = "Preliminary";
 
   TH1::StatOverflows(kTRUE);
   gStyle->SetOptTitle(0);
