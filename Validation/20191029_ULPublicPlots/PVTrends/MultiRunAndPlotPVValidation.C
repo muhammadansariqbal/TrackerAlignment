@@ -2289,21 +2289,21 @@ void cmsPrel(TPad *pad, size_t ipads) {
   latex->SetTextSize(0.045);
 
   float posX_ = 1 - (r / ipads);
-  float posY_ = 1 - t + 0.05;  /// - relPosY*(1-t-b);
+  float posY_ = 1 - t + 0.013;  /// - relPosY*(1-t-b);
   float factor = 1. / 0.82;
 
-  latex->SetTextAlign(33);
+  latex->SetTextAlign(31);
   latex->SetTextSize(0.045);
   latex->SetTextFont(42);  //22
   latex->DrawLatex(posX_, posY_, "2016+2017+2018 pp collisions");
 
-  latex->SetTextAlign(13);
+  latex->SetTextAlign(11);
   latex->SetTextSize(0.045 * factor);
   latex->SetTextFont(61);
   float posXCMS_ = (l / ipads);
   latex->DrawLatex(posXCMS_, posY_ + 0.004, "CMS");
 
-  latex->SetTextAlign(13);
+  latex->SetTextAlign(11);
   latex->SetTextSize(0.045);
   latex->SetTextFont(42);
   latex->DrawLatex(posXCMS_+0.05, posY_ + 0.004, "Preliminary");
